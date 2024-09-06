@@ -115,7 +115,7 @@ else
 # File archiving - Copying into /Data/Archive Linux folder and /dw/dw_archive FTP folder
 cp $FILE_DIR/Approved_Expenses_External_Table.csv $ARCHIVE_FILE_DIR/$sftpFileSuffix`echo $extract_oldest_file | sed -e s/[^0-9]//g`.csv
 
-(echo "Archiving $extract_oldest_file file into /dw/dw_archive Concur FTP folder") |mailx  -r "user_name@company.com" -s "Archiving $(echo "rename $extract_oldest_file /dw/dw_archive/$extract_oldest_file" | $sftpConnect | grep $extract_oldest_file)" wagnerw@oath.com
+(echo "Archiving $extract_oldest_file file into /dw/dw_archive FTP folder") |mailx  -r "user_name@company.com" -s "Archiving $(echo "rename $extract_oldest_file /dw/dw_archive/$extract_oldest_file" | $sftpConnect | grep $extract_oldest_file)" user_name@company.com
 fi
 
 echo ' ' >> "$LOG_FILE"
