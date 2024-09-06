@@ -78,9 +78,9 @@ echo 'SFTP transfer of ' $extract_oldest_file ' file is done ' $current_output_a
 
    gpg --homedir /home/`whoami`/.gnupg -v --batch --yes --output $FILE_DIR/Decrypted_Zipped_File.csv.zip $FILE_DIR/$extract_oldest_file   >> "$LOG_FILE"
 
-   echo 'File ' $FILE_DIR/$extract_oldest_file decrypted to $FILE_DIR/Concur_Decrypted_Zipped_File.csv.zip  >> "$LOG_FILE"
+   echo 'File ' $FILE_DIR/$extract_oldest_file decrypted to $FILE_DIR/Decrypted_Zipped_File.csv.zip  >> "$LOG_FILE"
 
-   echo 'Start unzipping ' $FILE_DIR/Concur_Decrypted_Zipped_File.csv.zip  >> "$LOG_FILE"
+   echo 'Start unzipping ' $FILE_DIR/Decrypted_Zipped_File.csv.zip  >> "$LOG_FILE"
    unzip -o $FILE_DIR/Decrypted_Zipped_File.csv.zip -d $FILE_DIR >> "$LOG_FILE"
    echo 'File unzipped to "'$FILE_DIR/'Approved Expenses (By Sent for Payment Date).csv"'  >> "$LOG_FILE"
 
@@ -106,13 +106,13 @@ echo 'Transfer Status: ' $status  >> "$LOG_FILE"
 #Notify file transfer status
 if [[ status -ne 0 ]]
 then
-  cat $LOG_FILE |mail -s "dwops@`hostname` : Concur file transfer: FAILED" $EMAIL_LIST
+  cat $LOG_FILE |mail -s "dwops@`hostname` : File transfer: FAILED" $EMAIL_LIST
 else
   echo "*** File Pull - Completed ***" >> $LOG_FILE
 
   echo "File transfer done file created. " >> $LOG_FILE
 
-# File archiving - Copying into /Data/Archive Linux folder and /dw/dw_archive Concur FTP folder
+# File archiving - Copying into /Data/Archive Linux folder and /dw/dw_archive FTP folder
 cp $FILE_DIR/Approved_Expenses_External_Table.csv $ARCHIVE_FILE_DIR/$sftpFileSuffix`echo $extract_oldest_file | sed -e s/[^0-9]//g`.csv
 
 (echo "Archiving $extract_oldest_file file into /dw/dw_archive Concur FTP folder") |mailx  -r "user_name@company.com" -s "Archiving $(echo "rename $extract_oldest_file /dw/dw_archive/$extract_oldest_file" | $sftpConnect | grep $extract_oldest_file)" wagnerw@oath.com
@@ -121,6 +121,6 @@ fi
 echo ' ' >> "$LOG_FILE"
 echo 'End Time: ' `date` >> "$LOG_FILE"
 echo ' ' >> "$LOG_FILE"
-echo '**** The End of Concur FTP File Extract *****' >> "$LOG_FILE"
+echo '**** The End of FTP File Extract *****' >> "$LOG_FILE"
 mv "$LOG_FILE" $LOG_FILE-`echo $extract_oldest_file | sed -e s/[^0-9]//g`.log
 ### exit $status
