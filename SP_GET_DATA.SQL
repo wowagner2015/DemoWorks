@@ -1,10 +1,10 @@
 Create Or Replace Procedure SP_GET_DATA
 AS
 BEGIN
-Merge into findw.W_Run_ETL_Log t
+Merge into dw.W_Run_ETL_Log t
   using
   (select *
-   from findw.E_Run_ETL) s
+   from dw.E_Run_ETL) s
   on (t.FILE_NM = s.FILE_NM)
   When matched then
      Update set t.FILE_PRIV     = s.FILE_PRIV
