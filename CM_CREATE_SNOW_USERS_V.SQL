@@ -1,4 +1,4 @@
-  CREATE OR REPLACE FORCE EDITIONABLE VIEW "EDW"."CM_CREATE_SNOW_USERS_V" ("CM_CREATE_SNOW_USERS") AS 
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW EDW.CM_CREATE_SNOW_USERS_V (CM_CREATE_SNOW_USERS) AS 
   Select 
 Cast('CREATE USER "' || Trim(M.User_ID) || '" FULLNAME "' || Trim(M.Employee_Name_DESC) || 
      '" DESCRIPTION "' || SubStr(Trim(M.Employee_Title_Location_DESC) || ' ' || chr(10) || 
@@ -8,7 +8,7 @@ Cast('CREATE USER "' || Trim(M.User_ID) || '" FULLNAME "' || Trim(M.Employee_Nam
      CM_Create_SNOW_Users
 From
 EDW.L_Employee_Hierarchy_Curr_V M
-Left Outer Join "EDW"."E_MSTR_USERS_V" EM
+Left Outer Join EDW.E_MSTR_USERS_V EM
 On M.User_ID = EM.User_ID
 Join (Select Distinct User_ID From EDW.F_SNOW_TASKS_V) SNOW
 on Trim(Lower(SNOW.User_id)) = M.USER_ID
