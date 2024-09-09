@@ -1,7 +1,7 @@
 create or replace Procedure SP_Update_SNOW_TASKS_MSTR_PROC
     As
     Begin 
-    Merge Into FINDW.FINDW_SNOW_TASKS_FACT SNOW
+    Merge Into EDW.F_SNOW_TASKS SNOW
        Using 
        (Select SNOW.Task_Number, MSTR_User_Recon.User_ID, MSTR_Groups.Close_Notes
                   From EDW.F_SNOW_MSTR_EM_User_Recon_V MSTR_User_Recon
@@ -14,7 +14,7 @@ create or replace Procedure SP_Update_SNOW_TASKS_MSTR_PROC
                     ) MSTR_Groups
                     On  MSTR_User_Recon.Task_Number = MSTR_Groups.Task_Number
                     And MSTR_User_Recon.User_ID     = MSTR_Groups.User_ID
-                  Join EDW.FINDW_SNOW_TASKS_FACT SNOW
+                  Join EDW.F_SNOW_TASKS SNOW
                     On MSTR_Groups.Task_Number = SNOW.Task_Number
                     Where MSTR_User_Recon.Enabled = 1 And MSTR_User_Recon.SNOW_and_MSTR_Insync = 1 And SNOW.MSTR_PROCESSED_DATE Is Null) 
        Recon
