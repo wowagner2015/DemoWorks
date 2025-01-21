@@ -109,8 +109,8 @@ def main(send_to, reply_to, env, send_email, retry_seconds, retry_interval):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Monitors MicroStrategy server statuses and sends email alerts.")
-    parser.add_argument('send_to', nargs='?', default='wagnerw@yahooinc.com', help="Email address to send the alert to.")
-    parser.add_argument('reply_to', nargs='?', default='wagnerw@yahooinc.com', help="Email address for the 'reply-to' header.")
+    parser.add_argument('send_to', nargs='?', default='wagnerw@email.com', help="Email address to send the alert to.")
+    parser.add_argument('reply_to', nargs='?', default='wagnerw@email.com', help="Email address for the 'reply-to' header.")
     parser.add_argument('--env', default='PRD', choices=['DEV', 'UAT', 'PRD'], help="Environment for the server status check.")
     parser.add_argument('--send_email', action='store_true', help="Force sending an email alert, regardless of server status.")
     parser.add_argument('--retry_seconds', type=int, default=300, help="Total seconds to retry checking server status before sending an alert.")
