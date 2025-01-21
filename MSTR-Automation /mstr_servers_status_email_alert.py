@@ -16,12 +16,12 @@
 #       - `send_to` and `reply_to` can be provided as positional arguments without switches for quick setup.
 #       - Named arguments allow for further customization and are optional.
 #
-# Example: python3 mstr_servers_status_email_alert.py "bi-cio-alert@yahooprod.opsgenie.net" 
+# Example: python3 mstr_servers_status_email_alert.py "bi-cio-alert@host_name_prod.opsgenie.net" 
 #          "Business-Systems-Analytics@email.com" --env UAT --send_email
 #
 # Arguments:
-#   send_to (positional)       Email address to send the alert to. Default: 'wagnerw@yahooinc.com'.
-#   reply_to (positional)      Email address for the 'reply-to' header. Default: 'wagnerw@yahooinc.com'.
+#   send_to (positional)       Email address to send the alert to. Default: 'wagnerw@yemail.com'.
+#   reply_to (positional)      Email address for the 'reply-to' header. Default: 'wagnerw@email.com'.
 #   --env {DEV,UAT,PRD}        Environment for server status checks. Default: 'PRD'.
 #   --send_email               Forces sending an email alert, regardless of server status. Useful for testing.
 #   --retry_seconds <seconds>  Total duration to retry checking server statuses. Default: 300 seconds.
@@ -45,7 +45,7 @@ import mstr_servers_status as sc
 
 def send_email_alert(subject, body, send_to, reply_to):
     msg = MIMEMultipart()
-    msg['From'] = 'CorpAppsBI-MSTR@yahooinc.com'
+    msg['From'] = 'CorpAppsBI-MSTR@email.com'
     msg['To'] = send_to
     msg['Subject'] = subject
     msg.add_header('reply-to', reply_to)
