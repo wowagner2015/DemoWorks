@@ -54,7 +54,7 @@ def send_email_alert(subject, body, send_to, reply_to):
     msg.attach(MIMEText(body, 'html'))
 
     # SMTP server configuration
-    smtp_server = 'smarthost.yahoo.com'
+    smtp_server = 'smarthost.host_name.com'
     smtp_port = 25
     smtp_conn = smtplib.SMTP(smtp_server, smtp_port)
     smtp_conn.ehlo()
@@ -102,7 +102,7 @@ def main(send_to, reply_to, env, send_email, retry_seconds, retry_interval):
         return    
         
     body_start = "<p>Please find the current server status below:</p>"
-    body_end = f"<a href='https://libra.ops.corp.yahoo.com:4443/vipDetails?vipName=mstr{env.lower()}.fin.vip.corp.gq1.yahoo.com&IPVersion=IPv4'>Server Status Overview</a>"
+    body_end = f"<a href='https://libra.ops.corp.api_host_name.com:4443/vipDetails?vipName=mstr{env.lower()}.fin.vip.corp.gq1.api_host_name.com&IPVersion=IPv4'>Server Status Overview</a>"
     body = body_start + body_content + body_end
 
     send_email_alert(subject, body, send_to, reply_to)
