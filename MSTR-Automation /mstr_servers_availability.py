@@ -6,7 +6,7 @@ import json
 
 def mstr_servers_availability(server_type):
 
-    arr=np.array(pd.DataFrame(requests.get('https://api.libra.ops.corp.gq1.yahoo.com:4443//v1.0/members/metrics/?vip=mstrprd.fin.vip.corp.gq1.yahoo.com&stale').json()).to_numpy())
+    arr=np.array(pd.DataFrame(requests.get('https://api.libra.ops.corp.gq1.yahoo.com:4443//v1.0/members/metrics/?vip=mstrprd.fin.vip.corp.gq1.api_host_name.com&stale').json()).to_numpy())
 
     if server_type.lower() in ('web1','web2','web'):
         port_number=8000
